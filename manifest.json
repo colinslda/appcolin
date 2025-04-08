@@ -2,7 +2,7 @@
   "name": "Mon Application PWA",
   "short_name": "MonApp",
   "description": "Une application PWA de démonstration.",
-  "start_url": "/index.html", // Ou "." si index.html est à la racine
+  "start_url": ".", // Ou "." si index.html est à la racine
   "display": "standalone", // Comportement type application
   "background_color": "#ffffff",
   "theme_color": "#000000", // Couleur de la barre d'outils du navigateur
