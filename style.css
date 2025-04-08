@@ -1,0 +1,264 @@
+/* Variables et Reset */
+:root {
+    --font-title: 'Montserrat', sans-serif;
+    --font-text: 'DM Sans', sans-serif;
+    --color-background: #ffffff;
+    --color-text: #000000;
+    --color-primary: #000000; /* Noir pour les boutons primaires */
+    --color-primary-text: #ffffff; /* Blanc pour le texte des boutons primaires */
+    --color-border: #cccccc;
+    --color-danger: #cc0000; /* Pour bouton déconnexion */
+
+    /* Dimensions iPhone 14 Pro (CSS Pixels): 393x852 */
+    /* On utilise max-width pour permettre l'adaptabilité */
+    --app-max-width: 393px;
+    --safe-area-top: env(safe-area-inset-top, 20px); /* Pour encoche iOS */
+    --safe-area-bottom: env(safe-area-inset-bottom, 20px);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: var(--font-text);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Aligner en haut */
+    min-height: 100%;
+    -webkit-font-smoothing: antialiased; /* Améliore rendu texte */
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+}
+
+/* Conteneur pour simuler l'app */
+#app-container {
+    width: 100%;
+    max-width: var(--app-max-width);
+    height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    /* Pour iPhone 14 Pro (852px), mais 100vh est plus flexible */
+    /* height: 852px; */
+    border: 1px solid #eee; /* Juste pour visualiser les limites pendant le dev */
+    overflow: hidden; /* Empêche le scroll global, chaque page gère son scroll si besoin */
+    position: relative; /* Pour positionner les pages */
+    background-color: var(--color-background); /* Fond blanc */
+}
+
+
+/* Style des Pages (Vues) */
+.page {
+    display: none; /* Caché par défaut */
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    position: absolute; /* Superposées */
+    top: 0;
+    left: 0;
+    background-color: var(--color-background);
+    overflow-y: auto; /* Permet le scroll si le contenu dépasse */
+    padding-top: var(--safe-area-top); /* Marge pour encoche */
+    padding-bottom: var(--safe-area-bottom);
+}
+
+.page.active {
+    display: flex; /* Affiché quand actif */
+    animation: fadeIn 0.3s ease-in-out; /* Animation simple */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Style du contenu dans les pages */
+.page-content {
+    padding: 20px;
+    flex-grow: 1; /* Prend l'espace restant */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre horizontalement par défaut */
+    width: 100%;
+}
+
+/* En-tête d'application */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--color-border);
+    width: 100%;
+    /* background-color: rgba(255, 255, 255, 0.9); /* Léger fond si besoin */
+    /* backdrop-filter: blur(5px); /* Effet flou si désiré */
+}
+
+.app-title {
+    font-family: var(--font-title);
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.profile-icon, .back-icon {
+    font-size: 1.5em; /* Ajuster la taille de l'icône */
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Titres */
+.title {
+    font-family: var(--font-title);
+    font-size: 2em;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.subtitle {
+    font-family: var(--font-title);
+    font-size: 1.4em;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Formulaires */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 320px; /* Limite largeur du formulaire */
+    margin: 0 auto; /* Centre le formulaire */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+label {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: #333; /* Un peu plus doux que le noir pur */
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    padding: 12px 15px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-family: var(--font-text);
+    font-size: 1em;
+    width: 100%;
+    background-color: #f9f9f9; /* Léger fond pour les champs */
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Boutons */
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: var(--font-text);
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-primary-text);
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-danger {
+    background-color: var(--color-danger);
+    color: var(--color-primary-text);
+    margin-top: 30px;
+}
+.btn-danger:hover {
+    opacity: 0.9;
+}
+
+
+/* Liens pour changer de formulaire */
+.switch-link {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.switch-link a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* Page Principale - Boutons de fonctionnalités */
+.main-content {
+    justify-content: flex-start; /* Aligner le contenu en haut */
+    padding-top: 40px;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 300px; /* Largeur des boutons */
+    margin-top: 20px;
+}
+
+.btn-feature {
+    background-color: #eee; /* Gris clair */
+    color: var(--color-text); /* Texte noir */
+    border: 1px solid #ccc;
+    padding: 15px; /* Plus grands boutons */
+}
+
+.btn-feature:hover {
+    background-color: #ddd;
+}
+
+.btn-feature:active {
+    transform: scale(0.98);
+}
+
+/* Page Profil */
+#profile-page .page-content {
+    align-items: flex-start; /* Aligner le texte à gauche */
+    padding-top: 30px;
+}
+
+#profile-page p {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+#profile-email-display {
+    font-weight: bold;
+}
