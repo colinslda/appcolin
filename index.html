@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MonApp">
+
+    <title>Mon App PWA</title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" href="icons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+
+</head>
+<body>
+
+    <div id="app-container">
+
+        <div id="login-page" class="page active">
+            <div class="page-content">
+                <h1 class="title">Connexion</h1>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Mot de passe</label>
+                        <input type="password" id="login-password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Se connecter</button>
+                </form>
+                <p class="switch-link">Pas encore de compte ? <a href="#" id="goto-signup">Inscrivez-vous</a></p>
+            </div>
+        </div>
+
+        <div id="signup-page" class="page">
+             <div class="page-content">
+                <h1 class="title">Inscription</h1>
+                <form id="signup-form">
+                     <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Mot de passe</label>
+                        <input type="password" id="signup-password" name="password" required>
+                    </div>
+                     <div class="form-group">
+                        <label for="signup-confirm-password">Confirmer le mot de passe</label>
+                        <input type="password" id="signup-confirm-password" name="confirm_password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">S'inscrire</button>
+                </form>
+                <p class="switch-link">Déjà un compte ? <a href="#" id="goto-login">Connectez-vous</a></p>
+            </div>
+        </div>
+
+        <div id="main-page" class="page">
+            <header class="app-header">
+                <span class="app-title">Accueil</span>
+                <div id="profile-icon" class="profile-icon" role="button" aria-label="Accéder au profil">👤</div>
+            </header>
+            <div class="page-content main-content">
+                <h2 class="subtitle">Fonctionnalités</h2>
+                <div class="button-group">
+                    <button id="feature-btn-1" class="btn btn-feature">Fonctionnalité 1</button>
+                    <button id="feature-btn-2" class="btn btn-feature">Fonctionnalité 2</button>
+                    <button id="feature-btn-3" class="btn btn-feature">Fonctionnalité 3</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="profile-page" class="page">
+             <header class="app-header">
+                 <div id="back-to-main" class="back-icon" role="button" aria-label="Retour à l'accueil">←</div>
+                <span class="app-title">Profil</span>
+                <div style="width: 24px;"></div> </header>
+            <div class="page-content">
+                <h2 class="subtitle">Informations Utilisateur</h2>
+                <p>Email : <span id="profile-email-display">non.connecte@example.com</span></p>
+                <button id="logout-button" class="btn btn-danger">Déconnexion</button>
+            </div>
+        </div>
+
+    </div> <script src="script.js"></script>
+</body>
+</html>
